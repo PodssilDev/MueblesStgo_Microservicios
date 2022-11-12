@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,14 +17,18 @@ public class JustificativoController {
     JustificativoService justificativoService;
 
     @GetMapping
-    public List<JustificativoEntity> obtenerJustificativos(){
-        return justificativoService.obtenerJustificativos();
+    public ResponseEntity<ArrayList<JustificativoEntity>> obtenerJustificativos(){
+        ArrayList<JustificativoEntity> justificativos = justificativoService.obtenerJustificativos();
+        if(justificativos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(justificativos);
     }
 
-    @GetMapping("/porempleados/{rut}")
-    public ResponseEntity<List<JustificativoEntity>> obtenerJustificativosPorRut(@PathVariable("rut") String rut) {
-        List<JustificativoEntity> justificativos = justificativoService.obtenerJustificativosEmpleado(
-                rut);
+    @GetMapping("/porempleados/{rut}/{fecha}")
+    public ResponseEntity<JustificativoEntity> obtenerJustificativosPorRut(@PathVariable("rut") String rut, @PathVariable("fecha") String fecha) {
+        JustificativoEntity justificativos = justificativoService.buscarJustificativo(
+                rut, fecha);
         return ResponseEntity.ok(justificativos);
     }
 

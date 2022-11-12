@@ -17,7 +17,6 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -99,4 +98,3 @@
 	</build>
 
 </project>
-

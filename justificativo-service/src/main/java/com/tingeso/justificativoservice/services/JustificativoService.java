@@ -5,6 +5,7 @@ import com.tingeso.justificativoservice.repositories.JustificativoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,9 @@ public class JustificativoService {
         return nuevoJustificativo;
     }
 
-    public List<JustificativoEntity> obtenerJustificativos(){
-        return justificativoRepository.findAll();
+    public ArrayList<JustificativoEntity> obtenerJustificativos(){
+        return (ArrayList<JustificativoEntity>)justificativoRepository.findAll();
+
     }
     public JustificativoEntity buscarJustificativo(String rut, String fecha){
         return this.justificativoRepository.buscarJustificativo(rut, fecha);

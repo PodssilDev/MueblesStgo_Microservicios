@@ -1,0 +1,1 @@
+INSERT INTO autorizacion(id, fecha, rut) VALUES (20, "12112022", "20934");

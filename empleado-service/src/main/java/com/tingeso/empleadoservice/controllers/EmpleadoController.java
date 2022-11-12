@@ -18,7 +18,6 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
 
     @GetMapping
-    //@RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         if(empleados.isEmpty())

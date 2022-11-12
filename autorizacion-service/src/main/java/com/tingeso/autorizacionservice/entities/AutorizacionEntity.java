@@ -1,4 +1,4 @@
-package com.tingeso.justificativoservice.entities;
+package com.tingeso.autorizacionservice.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "justificativo")
+@Table(name = "autorizacion")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class JustificativoEntity {
+public class AutorizacionEntity {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String fecha;
     private String rut;
+    private String fecha;
 }
