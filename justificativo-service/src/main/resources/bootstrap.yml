@@ -10,9 +10,9 @@ spring:
       uri: http://localhost:8081
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOSTNAME:localhost}:${DB_PORT:3308}/${DB_NAME:justificativo}?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
-    username: ${DB_USR:root}
-    password: ${DB_PSW:root}
+    url: jdbc:mysql://localhost:3306/justificativo?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: password
   jpa:
     show-sql: true
     hibernate:
