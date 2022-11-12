@@ -52,7 +52,7 @@ public class EmpleadoController {
         List<JustificativoModel> justificativos = empleadoService.obtenerJustificativos(rut);
         return ResponseEntity.ok(justificativos);
     }
-    /*
+    
     @GetMapping("/autorizaciones/{rut}")
     public ResponseEntity<List<AutorizacionModel>> obtenerAutorizaciones(@PathVariable("rut") String rut) {
         EmpleadoEntity empleado = empleadoService.findByRut(rut);
@@ -61,5 +61,4 @@ public class EmpleadoController {
         List<AutorizacionModel> autorizaciones = empleadoService.obtenerAutorizaciones(rut);
         return ResponseEntity.ok(autorizaciones);
     }
-     */
 }

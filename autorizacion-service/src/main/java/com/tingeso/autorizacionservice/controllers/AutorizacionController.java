@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/autorizaciones")
+@RequestMapping("/autorizacion")
 public class AutorizacionController {
 
     @Autowired
