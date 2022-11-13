@@ -72,6 +72,8 @@ const HomeStyle = styled.nav`
 
 .text-center {
     text-align: center;
+    justify-content: center;
+    border: 10px solid #262626;
     color: #fff
 }
 
@@ -88,7 +90,7 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 350px;
+    width: 400px;
     height: auto;
     border-radius: 4px;
     background-color: #fff;

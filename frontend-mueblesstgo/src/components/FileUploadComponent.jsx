@@ -38,17 +38,22 @@ class FileUploadComponent extends Component{
               <h1><b>Cargar el archivo de datos</b></h1>
               <Row className="mt-4">
                 <Col col="12">
-                  <Form>
-                    <Form.Group className="mb-3" controlId="file">
-                      <Form.Control type="file" onChange={this.onFileChange} />
+                    <Form.Group className="mb-3" controlId="formFileLg">
+                      <Form.Control type="file" size = "lg" onChange={this.onFileChange} />
                     </Form.Group>
                     <Button varian="primary" onClick={this.onFileUpload}>
-                      Subir</Button>
-                  </Form>
+                      Cargar el archivo a la Base de Datos</Button>
                 </Col>
               </Row>
             </div>
           </div>
+          <br>
+          </br>
+          <hr>
+          </hr>
+          <div class = "form1">
+  <h5><b>Recuerde que el nombre del archivo debe ser "Data.txt"!</b></h5>
+</div>
         </Styles>
       </div>
     );
@@ -79,5 +84,12 @@ const Styles = styled.div`
   .f{margin-left: 200px;
     margin-right: 200px;}
   
+}
+.form1{
+  border: 1px solid rgb(82, 82, 173);
+  padding: 30px;
+  border-radius: 30px;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 `
