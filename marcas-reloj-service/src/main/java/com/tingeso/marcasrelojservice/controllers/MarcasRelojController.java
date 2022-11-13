@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/marcasreloj")
+@RequestMapping("/marcas-reloj")
 public class MarcasRelojController {
 
     @Autowired
