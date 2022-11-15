@@ -52,11 +52,11 @@ class FileUploadComponent extends Component{
               <h1><b>Cargar el archivo de datos</b></h1>
               <Row className="mt-4">
                 <Col col="12">
-                    <Form.Group className="mb-3" controlId="formFileLg">
-                      <Form.Control type="file" size = "lg" onChange={this.onFileChange}/>
-                    </Form.Group>
-                    <Button varian="primary" onClick={this.onFileUpload}>
-                      Cargar el archivo a la Base de Datos</Button>
+                  <Form.Group className="mb-3" controlId="formFileLg">
+                    <Form.Control type="file" size="lg" onChange={this.onFileChange} />
+                  </Form.Group>
+                  <Button varian="primary" onClick={this.onFileUpload}>
+                    Cargar el archivo a la Base de Datos</Button>
                 </Col>
               </Row>
             </div>
@@ -65,9 +65,9 @@ class FileUploadComponent extends Component{
           </br>
           <hr>
           </hr>
-          <div class = "form1">
-  <h5><b>Recuerde que el nombre del archivo debe ser "Data.txt"!</b></h5>
-</div>
+          <div class="form1">
+            <h5><b>Recuerde que el nombre del archivo debe ser "Data.txt"!</b></h5>
+          </div>
         </Styles>
       </div>
     );

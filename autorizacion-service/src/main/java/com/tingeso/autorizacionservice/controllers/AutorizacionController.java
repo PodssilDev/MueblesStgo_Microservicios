@@ -37,8 +37,10 @@ public class AutorizacionController {
     @PostMapping
     public ResponseEntity<AutorizacionEntity> guardarAutorizacion( @RequestBody AutorizacionEntity autorizacion)
     {
-        AutorizacionEntity nuevaAutorizacion = autorizacionService.guardarAutorizacion(autorizacion);
-        return ResponseEntity.ok(nuevaAutorizacion);
+        String rut = autorizacion.getRut();
+        String fecha = autorizacion.getFecha();
+        autorizacionService.guardarAutorizacion(fecha, rut);
+        return ResponseEntity.ok(autorizacion);
     }
 
     @GetMapping("/eliminar")

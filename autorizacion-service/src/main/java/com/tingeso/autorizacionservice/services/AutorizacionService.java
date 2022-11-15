@@ -17,10 +17,11 @@ public class AutorizacionService {
         return autorizacionRepository.findAll();
     }
 
-    public AutorizacionEntity guardarAutorizacion(AutorizacionEntity autorizacion){
-        AutorizacionEntity nuevaAutorizacion = autorizacionRepository.save(autorizacion);
-        return nuevaAutorizacion;
-
+    public void guardarAutorizacion(String fecha, String rut){
+        AutorizacionEntity autorizacion = new AutorizacionEntity();
+        autorizacion.setFecha(fecha);
+        autorizacion.setRut(rut);
+        autorizacionRepository.save(autorizacion);
     }
 
     public AutorizacionEntity buscarAutorizacion(String rut, String fecha){

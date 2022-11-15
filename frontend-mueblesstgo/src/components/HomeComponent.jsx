@@ -6,56 +6,56 @@ class HomeComponent extends Component {
     render() {
         return (
             <div>
-                <GlobalStyle/>
+                <GlobalStyle />
                 <HomeStyle>
-                <h1 className="text-center"> <b>MueblesStgo</b></h1>
-                <div class="box-area">
-                    <div class="single-box">
-                        <a href= "/subir-archivo">
-                            <div class="img-area">
+                    <h1 className="text-center"> <b>MueblesStgo</b></h1>
+                    <div class="box-area">
+                        <div class="single-box">
+                            <a href="/subir-archivo">
+                                <div class="img-area">
+                                </div>
+                            </a>
+                            <div class="img-text">
+                                <span class="header-text"><strong>Cargar DATA.txt</strong></span>
                             </div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Cargar DATA.txt</strong></span>
                         </div>
-                    </div>
-                    <div class="single-box">
-                        <a href="/lista-empleados">
-                            <div class="img-area">
+                        <div class="single-box">
+                            <a href="/lista-empleados">
+                                <div class="img-area">
+                                </div>
+                            </a>
+                            <div class="img-text">
+                                <span class="header-text"><strong>Ver empleados</strong></span>
                             </div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Ver empleados</strong></span>
+                        </div>
+                        <div class="single-box">
+                            <a href="/reportePlanilla">
+                                <div class="img-area"></div>
+                            </a>
+                            <div class="img-text">
+                                <span class="header-text"><strong>Planilla de sueldos</strong></span>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <a href="/justificativo">
+                                <div class="img-area"></div>
+                            </a>
+                            <div class="img-text">
+                                <span class="header-text"><strong>Ingresar justificativos</strong></span>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <a href="/autorizacion">
+                                <div class="img-area"></div>
+                            </a>
+                            <div class="img-text">
+                                <span class="header-text"><strong>Ingresar autorizaciones</strong></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="single-box">
-                        <a href="/reportePlanilla">
-                            <div class="img-area"></div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Planilla de sueldos</strong></span>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="single-box">
-                        <a href="/justificativo">
-                            <div class="img-area"></div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Ingresar justificativos</strong></span>
-                        </div>
-                    </div>
-                    <div class="single-box">
-                        <a href= "/subirAutorizacion">
-                        <div class="img-area"></div>
-                    </a>
-                    <div class="img-text">
-                        <span class="header-text"><strong>Ingresar autorizaciones</strong></span>
-                    </div>
-                </div>
-                </div>
                 </HomeStyle>
-                
+
             </div>
         );
     }

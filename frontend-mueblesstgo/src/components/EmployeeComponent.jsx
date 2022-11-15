@@ -58,10 +58,21 @@ export default EmployeeComponent;
 
 const Styles = styled.div`
 
+
 .text-center {
     text-align: center;
     justify-content: center;
     padding-top: 8px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 30px;
+    letter-spacing: 0px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
 }
 
 .f{

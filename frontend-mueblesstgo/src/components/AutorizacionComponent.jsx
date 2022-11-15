@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import NavbarComponent3 from "./NavbarComponent3";
 import styled from "styled-components";
-import JustificativoService from "../services/JustificativoService";
+import AutorizacionService from "../services/AutorizacionService";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
+import { createGlobalStyle } from 'styled-components'
 
-class JustificativoComponent extends Component{
+class AutorizacionComponent extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -27,26 +28,26 @@ class JustificativoComponent extends Component{
         console.log(this.state.rut);
     };
     
-    ingresarJustificativo = (e) => {
+    ingresarAutorizacion = (e) => {
         e.preventDefault();
         swal({
-            title: "¿Está seguro de que desea enviar el justificativo?",
-            text: "Una vez enviado, no podrá ser modificado. El empleado quedará JUSTIFICADO de su ausencia en la FECHA indicada.",
+            title: "¿Está seguro de que desea enviar la autorización?",
+            text: "Una vez enviada, no podrá ser modificada. El empleado quedará AUTORIZADO para trabajar horas extras en la FECHA indicada.",
             icon: "warning",
             buttons: ["Cancelar", "Enviar"],
             dangerMode: true
         }).then(respuesta=>{
             if(respuesta){
-                swal("Justificativo enviado correctamente!", {icon: "success", timer: "3000"});
-                let justificativo = { rut: this.state.rut, fecha: this.state.fecha};
-                console.log("justificativo => " + JSON.stringify(justificativo));
-                JustificativoService.IngresarJustificativo(justificativo).then(
+                swal("Autorización enviada correctamente!", {icon: "success", timer: "3000"});
+                let autorizacion = { rut: this.state.rut, fecha: this.state.fecha};
+                console.log("justificativo => " + JSON.stringify(autorizacion));
+                AutorizacionService.IngresarAutorizacion(autorizacion).then(
                     (res) => {
                     }
                   );
                 }
             else{
-                swal({text: "Justificativo no enviado.", icon: "error"});
+                swal({text: "Autorización no enviada.", icon: "error"});
             }
         });
     };
@@ -57,10 +58,9 @@ class JustificativoComponent extends Component{
             <Styles>
             <div className="home">
                 <NavbarComponent3 />
-                
                     <div className="mainclass">
                         <div className="form1">
-                            <h1 className="text-center"><b>Justificativos</b></h1>
+                            <h1 className="text-center"><b>Autorizaciones</b></h1>
                             <div className="formcontainer">
                                 <hr></hr>
                                 <div className="container">
@@ -71,23 +71,23 @@ class JustificativoComponent extends Component{
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="fecha" onChange={this.changeFechaHandler}>
-                                            <Form.Label>Fecha del justificativo</Form.Label>
+                                            <Form.Label>Fecha de la autorización</Form.Label>
                                             <Form.Control type="fecha" placeholder="Fecha en formato AAAA/MM/DD" />
                                         </Form.Group>
                                     </Form>
                                 </div>
-                                <Button className="boton" onClick={this.ingresarJustificativo}>Registrar Justificativo</Button>
+                                <Button className="boton" onClick={this.ingresarAutorizacion}>Registrar Autorización</Button>
                             </div>
                         </div>
                     </div>
-                
             </div>
             </Styles>
         )
     }
 }
 
-export default JustificativoComponent;
+export default AutorizacionComponent;
+
 
 const Styles = styled.div`
 
