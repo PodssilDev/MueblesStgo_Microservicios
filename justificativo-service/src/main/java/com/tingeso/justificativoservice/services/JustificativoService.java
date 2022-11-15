@@ -15,9 +15,11 @@ public class JustificativoService {
     @Autowired
     private JustificativoRepository justificativoRepository;
 
-    public JustificativoEntity guardarJustificativo(JustificativoEntity justificativo){
-        JustificativoEntity nuevoJustificativo = justificativoRepository.save(justificativo);
-        return nuevoJustificativo;
+    public void guardarJustificativo(String fecha, String rut){
+        JustificativoEntity justificativo = new JustificativoEntity();
+        justificativo.setFecha(fecha);
+        justificativo.setRut(rut);
+        justificativoRepository.save(justificativo);
     }
 
     public ArrayList<JustificativoEntity> obtenerJustificativos(){

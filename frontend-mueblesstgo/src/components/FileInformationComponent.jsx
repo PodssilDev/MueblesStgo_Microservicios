@@ -21,6 +21,7 @@ class FileInformationComponent extends Component{
             <div className="home">
                 <NavbarComponent2 />
                 <Styles>
+                <h1 className="text-center"> <b>Información de Data.txt</b></h1>
                     <div className="f">
 
                         <table border="1" class="content-table">
@@ -52,6 +53,19 @@ class FileInformationComponent extends Component{
 export default FileInformationComponent;
 
 const Styles = styled.div`
+
+.text-center {
+    text-align: center;
+    justify-content: center;
+    padding-top: 8px;
+}
+
+.text-center {
+    text-align: center;
+    justify-content: center;
+    padding-top: 8px;
+}
+
 .f{
     justify-content: center;
     align-items: center;

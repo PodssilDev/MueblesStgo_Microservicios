@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import NavbarComponent from "./NavbarComponent";
 import FileUploadService from "../services/FileUploadService";
 import styled from "styled-components";
+import swal from 'sweetalert';
 
 class FileUploadComponent extends Component{
   constructor(props) {
@@ -21,10 +22,23 @@ class FileUploadComponent extends Component{
   }
   
   onFileUpload = () => {
-    const formData = new FormData();
-    formData.append("file", this.state.file);
-    FileUploadService.CargarArchivo(formData).then((res) => {
-      window.location.href = "/";
+    swal({
+      title: "¿Está seguro de que desea cargar el archivo de texto?",
+      text: "Tenga en cuenta que el archivo solo será cargado si su nombre es 'Data.txt' y si su formato es correcto.",
+      icon: "warning",
+      buttons: ["Cancelar", "Cargar"],
+      dangerMode: true
+    }).then(respuesta=>{
+      if(respuesta){
+        swal("Archivo cargado correctamente!", {icon: "success", timer: "3000"});
+        const formData = new FormData();
+        formData.append("file", this.state.file);
+        FileUploadService.CargarArchivo(formData).then((res) => {
+        });
+      }
+      else{
+        swal({text: "Archivo no cargado.", icon: "error"});
+      }
     });
   };
 
@@ -39,7 +53,7 @@ class FileUploadComponent extends Component{
               <Row className="mt-4">
                 <Col col="12">
                     <Form.Group className="mb-3" controlId="formFileLg">
-                      <Form.Control type="file" size = "lg" onChange={this.onFileChange} />
+                      <Form.Control type="file" size = "lg" onChange={this.onFileChange}/>
                     </Form.Group>
                     <Button varian="primary" onClick={this.onFileUpload}>
                       Cargar el archivo a la Base de Datos</Button>

@@ -34,8 +34,10 @@ public class JustificativoController {
 
     @PostMapping
     public ResponseEntity<JustificativoEntity> guardarJustificativo(@RequestBody JustificativoEntity justificativo) {
-        JustificativoEntity nuevoJustificativo = justificativoService.guardarJustificativo(justificativo);
-        return ResponseEntity.ok(nuevoJustificativo);
+        String rut = justificativo.getRut();
+        String fecha = justificativo.getFecha();
+        justificativoService.guardarJustificativo(fecha, rut);
+        return ResponseEntity.ok(justificativo);
     }
 
     @GetMapping("/eliminar")

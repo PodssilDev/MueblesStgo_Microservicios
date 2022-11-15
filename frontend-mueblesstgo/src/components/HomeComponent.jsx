@@ -8,10 +8,10 @@ class HomeComponent extends Component {
             <div>
                 <GlobalStyle/>
                 <HomeStyle>
-                <h1 className="text-center"> <b1>MueblesStgo</b1></h1>
+                <h1 className="text-center"> <b>MueblesStgo</b></h1>
                 <div class="box-area">
                     <div class="single-box">
-                        <a href= "/fileUpload">
+                        <a href= "/subir-archivo">
                             <div class="img-area">
                             </div>
                         </a>
@@ -20,7 +20,7 @@ class HomeComponent extends Component {
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/lista">
+                        <a href="/lista-empleados">
                             <div class="img-area">
                             </div>
                         </a>
@@ -38,7 +38,7 @@ class HomeComponent extends Component {
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/subirJustificativo">
+                        <a href="/justificativo">
                             <div class="img-area"></div>
                         </a>
                         <div class="img-text">
@@ -73,8 +73,8 @@ const HomeStyle = styled.nav`
 .text-center {
     text-align: center;
     justify-content: center;
-    border: 10px solid #262626;
-    color: #fff
+    padding-top: 8px;
+    color: #fff;
 }
 
 .box-area{
