@@ -50,7 +50,7 @@ public class OficinaRRHHService {
     }
 
     public JustificativoModel obtenerJustificativo(String rut, String fecha){
-        JustificativoModel justificativo = restTemplate.getForObject("http://justificativo-service/justificativo/porempleado/" + rut +"/"+ fecha, JustificativoModel.class);
+        JustificativoModel justificativo = restTemplate.getForObject("http://justificativo-service/justificativo/porempleados/" + rut +"/"+ fecha, JustificativoModel.class);
         System.out.println(justificativo);
         return justificativo;
     }
@@ -112,6 +112,7 @@ public class OficinaRRHHService {
             calendario.set(calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH), day);
             if (!(comprobarFinesSemana(calendario))) {
                 String fecha_real = formatDate(calendario);
+                fecha_real = fecha_real.replaceAll("/", "-");
                 if(obtenerDataSalida(rut, fecha_real) != null){
                     if(obtenerAutorizacion(rut,fecha_real) != null){
                         String hora = obtenerDataSalida(rut,fecha_real).getHora();
@@ -173,6 +174,7 @@ public class OficinaRRHHService {
             calendario.set(calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH), day);
             if (!(comprobarFinesSemana(calendario))){
                 String fecha_real = formatDate(calendario);
+                fecha_real = fecha_real.replaceAll("/", "-");
                 if (obtenerDataEntrada(rut, fecha_real) == null){ // NO hay registro del rut y fecha en DATA TXT
                     descuentos = comprobarJustificativo(rut, fecha_real, descuentos);
                 }
@@ -231,6 +233,7 @@ public class OficinaRRHHService {
     }
 
     public Calendar prepararCalendario(String fecha) throws ParseException {
+        fecha = fecha.replaceAll("-", "/");
         Calendar calendario = Calendar.getInstance();
         DateFormat date1=new SimpleDateFormat("yyyy/MM/dd");
         Date real_fecha = date1.parse(fecha);

@@ -77,7 +77,9 @@ public class MarcasRelojService {
             String temp = "";
             String bfRead;
             while ((bfRead = bf.readLine()) != null) {
-                guardarDataDB(bfRead.split(";")[0], bfRead.split(";")[1], bfRead.split(";")[2]);
+                String fecha = bfRead.split(";")[0];
+                String newFecha = fecha.replaceAll("/","-");
+                guardarDataDB(newFecha, bfRead.split(";")[1], bfRead.split(";")[2]);
                 temp = temp + "\n" + bfRead;
             }
             texto = temp;
