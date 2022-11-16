@@ -13,19 +13,19 @@ import java.util.List;
 public interface MarcasRelojRepository extends JpaRepository <MarcasRelojEntity, Integer>{
 
 
-    @Query(value = "select * from data as e where e.rut = :rut and e.fecha =:fecha limit 1",
+    @Query(value = "select * from marcasreloj as e where e.rut = :rut and e.fecha =:fecha limit 1",
             nativeQuery = true)
     MarcasRelojEntity buscarData(@Param("rut") String rut, @Param("fecha") String fecha);
 
-    @Query(value = "select distinct rut from data", nativeQuery = true)
+    @Query(value = "select distinct rut from marcasreloj", nativeQuery = true)
     List<String> findDistinctRut();
 
-    @Query(value = "select e.fecha from data as e where e.rut = :rut limit 1", nativeQuery = true)
+    @Query(value = "select e.fecha from marcasreloj as e where e.rut = :rut limit 1", nativeQuery = true)
     String buscarFechaRut(@Param("rut")String rut);
 
-    @Query(value = "select * from data as e where e.rut = :rut and e.fecha = :fecha order by e.hora desc limit 1",  nativeQuery = true)
+    @Query(value = "select * from marcasreloj as e where e.rut = :rut and e.fecha = :fecha order by e.hora desc limit 1",  nativeQuery = true)
     MarcasRelojEntity buscarData2(@Param("rut")String rut, @Param("fecha") String fecha);
 
-    @Query(value = "select *  from data as e where e.rut = :rut", nativeQuery = true)
+    @Query(value = "select *  from marcasreloj as e where e.rut = :rut", nativeQuery = true)
     ArrayList<MarcasRelojEntity> eliminarData(@Param("rut")String rut);
 }

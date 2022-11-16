@@ -59,6 +59,15 @@ public class MarcasRelojService {
         }
     }
 
+    public MarcasRelojEntity obtenerEspecifico(String rut, String fecha){
+        return marcasRelojRepository.buscarData(rut, fecha);
+    }
+
+    public MarcasRelojEntity obtenerEspecifico2(String rut, String fecha){
+        return marcasRelojRepository.buscarData2(rut, fecha);
+    }
+
+
     public void leerTxt(String direccion) {
         String texto = "";
         BufferedReader bf = null;
@@ -96,6 +105,10 @@ public class MarcasRelojService {
         newData.setRut(rut);
         newData.setHora(hora);
         guardarData(newData);
+    }
+
+    public String obtenerFechaRut(String rut){
+        return marcasRelojRepository.buscarFechaRut(rut);
     }
 
     public List<String> obtenerRuts() {

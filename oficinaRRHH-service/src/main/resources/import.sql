@@ -1,0 +1,1 @@
+INSERT INTO reporte_planilla(rut, nombre_empleado, categoria, dedicacionl) VALUES ("537-8", "SERRANO C. JOSE", "C", "0");
