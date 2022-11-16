@@ -6,6 +6,7 @@ import FileInformationComponent from './components/FileInformationComponent';
 import EmployeeComponent from './components/EmployeeComponent';
 import JustificativoComponent from './components/JustificativoComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
+import SueldosComponent from './components/SueldosComponent';
 function App() {
   return (
     <div>
@@ -17,6 +18,8 @@ function App() {
         <Route path= "/lista-empleados" element={<EmployeeComponent />} />
         <Route path= "/justificativo" element={<JustificativoComponent />} />
         <Route path= "/autorizacion" element={<AutorizacionComponent />} />
+        <Route path= "/planilla-sueldos" element={<SueldosComponent />} />
+
       </Routes>
     </BrowserRouter>
   </div>
