@@ -18,3 +18,9 @@ spring:
     hibernate:
       dialect: MySQL8Dialect
       ddl-auto: create
+keycloak:
+  realm: tingeso-webapp
+  auth-server-url: http://localhost:8085
+  resource: springboot-keycloak
+  publicClient: true
+  bearer-only: true

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class JustificativoController {
     JustificativoService justificativoService;
 
     @GetMapping
+    @RolesAllowed("admin")
     public ResponseEntity<ArrayList<JustificativoEntity>> obtenerJustificativos(){
         ArrayList<JustificativoEntity> justificativos = justificativoService.obtenerJustificativos();
         if(justificativos.isEmpty()){
@@ -26,6 +28,7 @@ public class JustificativoController {
     }
 
     @GetMapping("/porempleados/{rut}/{fecha}")
+    @RolesAllowed("admin")
     public ResponseEntity<JustificativoEntity> obtenerJustificativosPorRut(@PathVariable("rut") String rut, @PathVariable("fecha") String fecha) {
         JustificativoEntity justificativos = justificativoService.buscarJustificativo(
                 rut, fecha);
@@ -33,6 +36,7 @@ public class JustificativoController {
     }
 
     @PostMapping
+    @RolesAllowed("admin")
     public ResponseEntity<JustificativoEntity> guardarJustificativo(@RequestBody JustificativoEntity justificativo) {
         String rut = justificativo.getRut();
         String fecha = justificativo.getFecha();
@@ -41,6 +45,7 @@ public class JustificativoController {
     }
 
     @GetMapping("/eliminar")
+    @RolesAllowed("admin")
     public void eliminarJustificativos(){
         justificativoService.eliminarJustificativos();
     }
