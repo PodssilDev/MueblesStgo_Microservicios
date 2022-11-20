@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/justificativo";
-
 class JustificativoService {
     
-    IngresarJustificativo(justificativo){
-        return axios.post(API_URL, justificativo);
+    IngresarJustificativo(justificativo, token){
+        return axios.post(`http://localhost:8080/justificativo`, justificativo, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
     }
 }
 

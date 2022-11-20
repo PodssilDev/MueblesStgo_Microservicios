@@ -1,67 +1,91 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
+import { useKeycloak } from '@react-keycloak/web'
 
-class HomeComponent extends Component {
-    render() {
-        return (
-            <div>
-                <GlobalStyle />
-                <HomeStyle>
-                    <h1 className="text-center"> <b>MueblesStgo</b></h1>
-                    <div class="box-area">
-                        <div class="single-box">
-                            <a href="/subir-archivo">
-                                <div class="img-area">
-                                </div>
-                            </a>
-                            <div class="img-text">
-                                <span class="header-text"><strong>Cargar DATA.txt</strong></span>
+
+export default function Home(){
+    const { keycloak } = useKeycloak()
+    
+    return (
+        <div>
+            <GlobalStyle />
+            <HomeStyle>
+                <h1 className="text-center"> <b>MueblesStgo</b></h1>
+                <div class="box-area">
+                    <div class="single-box">
+                        <a href="/subir-archivo">
+                            <div class="img-area">
                             </div>
-                        </div>
-                        <div class="single-box">
-                            <a href="/lista-empleados">
-                                <div class="img-area">
-                                </div>
-                            </a>
-                            <div class="img-text">
-                                <span class="header-text"><strong>Ver empleados</strong></span>
-                            </div>
-                        </div>
-                        <div class="single-box">
-                            <a href="/planilla-sueldos">
-                                <div class="img-area"></div>
-                            </a>
-                            <div class="img-text">
-                                <span class="header-text"><strong>Planilla de sueldos</strong></span>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="single-box">
-                            <a href="/justificativo">
-                                <div class="img-area"></div>
-                            </a>
-                            <div class="img-text">
-                                <span class="header-text"><strong>Ingresar justificativos</strong></span>
-                            </div>
-                        </div>
-                        <div class="single-box">
-                            <a href="/autorizacion">
-                                <div class="img-area"></div>
-                            </a>
-                            <div class="img-text">
-                                <span class="header-text"><strong>Ingresar autorizaciones</strong></span>
-                            </div>
+                        </a>
+                        <div class="img-text">
+                            <span class="header-text"><strong>Cargar DATA.txt</strong></span>
                         </div>
                     </div>
-                </HomeStyle>
+                    <div class="single-box">
+                        <a href="/lista-empleados">
+                            <div class="img-area">
+                            </div>
+                        </a>
+                        <div class="img-text">
+                            <span class="header-text"><strong>Ver empleados</strong></span>
+                        </div>
+                    </div>
+                    <div class="single-box">
+                        <a href="/planilla-sueldos">
+                            <div class="img-area"></div>
+                        </a>
+                        <div class="img-text">
+                            <span class="header-text"><strong>Planilla de sueldos</strong></span>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="single-box">
+                        <a href="/justificativo">
+                            <div class="img-area"></div>
+                        </a>
+                        <div class="img-text">
+                            <span class="header-text"><strong>Ingresar justificativos</strong></span>
+                        </div>
+                    </div>
+                    <div class="single-box">
+                        <a href="/autorizacion">
+                            <div class="img-area"></div>
+                        </a>
+                        <div class="img-text">
+                            <span class="header-text"><strong>Ingresar autorizaciones</strong></span>
+                        </div>
+                    </div>
+                    <div class="single-box">
+                    {
+                keycloak.authenticated ?
+                    <div className = "login-box">
+                        <a onClick={() => keycloak.logout()}>
+                         <div class="img-area"></div>
+                         </a>
+                         <div class="img-text">
+                            <span class="header-text"><strong>Logout</strong></span>
+                        </div>
+                        <h1></h1>
+                    </div>
+                    :
+                    <div className = "login-box">
+                        <a onClick={() => keycloak.login()}>
+                         <div class="img-area"></div>
+                         </a>
+                         <div class="img-text">
+                            <span class="header-text"><strong>Login</strong></span>
+                        </div>
+                    </div>
+                    }
+                    </div>
+                </div>
+            </HomeStyle>
 
-            </div>
-        );
-    }
+        </div>
+    );
 }
 
-export default HomeComponent;
 
 
 const GlobalStyle = createGlobalStyle`
@@ -143,5 +167,12 @@ const HomeStyle = styled.nav`
 }
 .single-box:nth-child(5) .img-area{
         background-image: url(https://media.istockphoto.com/vectors/agreement-contract-and-offer-color-line-icon-proposal-linear-vector-vector-id1271477227?k=20&m=1271477227&s=612x612&w=0&h=XOSF2ISnfGJZ7bb-fU7rRdDJzTKehDmOF9kcJ5gIEmA=)
+}
+
+.single-box:nth-child(6) .img-area{
+    background-image: url(https://media.kasperskydaily.com/wp-content/uploads/sites/88/2015/12/05222030/passwords-10x10-FB-1000x1000.jpg)
+}
+.login-box{
+    cursor: pointer;
 }
 `

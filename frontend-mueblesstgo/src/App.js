@@ -7,9 +7,12 @@ import EmployeeComponent from './components/EmployeeComponent';
 import JustificativoComponent from './components/JustificativoComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
 import SueldosComponent from './components/SueldosComponent';
+import { ReactKeycloakProvider } from '@react-keycloak/web'
+import keycloak from './keycloak'
 function App() {
   return (
     <div>
+      <ReactKeycloakProvider authClient={keycloak}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeComponent />} />
@@ -22,6 +25,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </ReactKeycloakProvider>
   </div>
   );
 }

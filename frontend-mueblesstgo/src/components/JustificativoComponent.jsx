@@ -1,33 +1,33 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavbarComponent3 from "./NavbarComponent3";
 import styled from "styled-components";
 import JustificativoService from "../services/JustificativoService";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
+import { useKeycloak } from '@react-keycloak/web'
 
-class JustificativoComponent extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            rut: "",
-          fecha: ""
-        };
-        this.changeRutHandler = this.changeRutHandler.bind(this);
-        this.changeFechaHandler = this.changeFechaHandler.bind(this);
-    }
+export default function JustificativoComponent(props){
+    const { keycloak } = useKeycloak()
 
-    changeFechaHandler = (event) => {
-        this.setState({ fecha: event.target.value });
-        console.log(this.state.fecha);
+    const initialState = {
+        rut: "",
+        fecha: ""
     };
 
-    changeRutHandler = (event) => {
-        this.setState({ rut: event.target.value });
-        console.log(this.state.rut);
-    };
+    const [input, setInput] = useState(initialState);
     
-    ingresarJustificativo = (e) => {
+    const changeRutHandler = event => {
+        setInput({ ...input, rut: event.target.value });
+        console.log(input.rut);
+    };
+    const changeFechaHandler = event => {
+        setInput({ ...input, fecha: event.target.value });
+        console.log(input.fecha);
+    };
+
+    
+    const ingresarJustificativo = e => {
         e.preventDefault();
         swal({
             title: "¿Está seguro de que desea enviar el justificativo?",
@@ -38,9 +38,11 @@ class JustificativoComponent extends Component{
         }).then(respuesta=>{
             if(respuesta){
                 swal("Justificativo enviado correctamente!", {icon: "success", timer: "3000"});
-                let justificativo = { rut: this.state.rut, fecha: this.state.fecha};
+                let justificativo = { fecha: input.fecha, rut: input.rut};
+                console.log(input.rut)
+                console.log(input.fecha)
                 console.log("justificativo => " + JSON.stringify(justificativo));
-                JustificativoService.IngresarJustificativo(justificativo).then(
+                JustificativoService.IngresarJustificativo(justificativo, keycloak.token).then(
                     (res) => {
                     }
                   );
@@ -51,13 +53,11 @@ class JustificativoComponent extends Component{
         });
     };
 
-    
-    render(){
-        return(
+    return(
+            
             <Styles>
             <div className="home">
                 <NavbarComponent3 />
-                
                     <div className="mainclass">
                         <div className="form1">
                             <h1 className="text-center"><b>Justificativos</b></h1>
@@ -65,18 +65,18 @@ class JustificativoComponent extends Component{
                                 <hr></hr>
                                 <div className="container">
                                     <Form>
-                                        <Form.Group className="mb-3" controlId="rut" onChange={this.changeRutHandler}>
+                                        <Form.Group className="mb-3" controlId="rut" value = {input.rut} onChange={changeRutHandler}>
                                             <Form.Label>Rut del empleado</Form.Label>
                                             <Form.Control type="rut" placeholder="Rut del empleado en formato xx.xxx.xxx-x" />
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="fecha" onChange={this.changeFechaHandler}>
+                                        <Form.Group className="mb-3" controlId="fecha" value = {input.fecha} onChange={changeFechaHandler}>
                                             <Form.Label>Fecha del justificativo</Form.Label>
                                             <Form.Control type="fecha" placeholder="Fecha en formato AAAA/MM/DD" />
                                         </Form.Group>
                                     </Form>
                                 </div>
-                                <Button className="boton" onClick={this.ingresarJustificativo}>Registrar Justificativo</Button>
+                                <Button className="boton" onClick={ingresarJustificativo}>Registrar Justificativo</Button>
                             </div>
                         </div>
                     </div>
@@ -85,9 +85,7 @@ class JustificativoComponent extends Component{
             </Styles>
         )
     }
-}
 
-export default JustificativoComponent;
 
 const Styles = styled.div`
 
