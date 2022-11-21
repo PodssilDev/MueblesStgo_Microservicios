@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  empleado:
+    image: 'mysql'
+    restart: always
+    environment:
+      - MYSQL_DATABASE=empleado
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+
+  employee-service:
+    image: 'johnserrano159/empleado-service'
+    restart: always
+    container_name: empleado-service-service
+    environment:
+      - DB_HOSTNAME=empleado
+      - DB_PORT=3306
+      - DB_NAME=empleado
+      - DB_USR=root
+      - DB_PSW=password
+      - EUREKA=eureka-service
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - HOSTNAME=config-service
+    ports:
+      - 8082:8082
+    depends_on:
+      - db-employee
