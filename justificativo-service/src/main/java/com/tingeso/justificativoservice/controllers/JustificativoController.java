@@ -18,7 +18,6 @@ public class JustificativoController {
     JustificativoService justificativoService;
 
     @GetMapping
-    @RolesAllowed("admin")
     public ResponseEntity<ArrayList<JustificativoEntity>> obtenerJustificativos(){
         ArrayList<JustificativoEntity> justificativos = justificativoService.obtenerJustificativos();
         if(justificativos.isEmpty()){
@@ -28,7 +27,6 @@ public class JustificativoController {
     }
 
     @GetMapping("/porempleados/{rut}/{fecha}")
-    @RolesAllowed("admin")
     public ResponseEntity<JustificativoEntity> obtenerJustificativosPorRut(@PathVariable("rut") String rut, @PathVariable("fecha") String fecha) {
         JustificativoEntity justificativos = justificativoService.buscarJustificativo(
                 rut, fecha);

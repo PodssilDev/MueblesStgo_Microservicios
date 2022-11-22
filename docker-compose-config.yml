@@ -12,7 +12,9 @@ services:
     container_name: eureka-service
     depends_on:
       - config-service
-    links:
-      - config-service
+    environment:
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
     ports:
       - 8761:8761
+    hostname: eureka-service

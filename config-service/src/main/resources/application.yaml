@@ -6,9 +6,7 @@ spring:
       server:
         git:
           default-label: main
-          uri: https://github.com/PodssilDev/Microservicios_Tingeso2
+          uri: https://github.com/PodssilDev/tingeso-config.git
           search-paths: config-data
-          password: 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
-          username: PodssilDev
   application:
     name: config-service

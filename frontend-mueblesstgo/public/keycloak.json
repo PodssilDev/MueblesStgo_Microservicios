@@ -1,6 +1,6 @@
 {
     "realm": "tingeso-webapp",
-    "auth-server-url": "http://localhost:8085/",
+    "auth-server-url": "http://host.docker.internal:8085",
     "ssl-required": "external",
     "resource": "springboot-keycloak",
     "public-client": true,
