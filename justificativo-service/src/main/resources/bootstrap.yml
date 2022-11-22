@@ -23,6 +23,4 @@ keycloak:
   authServerUrl: http://host.docker.internal:8085/
   resource: springboot-keycloak
   publicClient: true
-  sslRequired: external
   bearerOnly: true
-  useResourceRoleMappings: true
