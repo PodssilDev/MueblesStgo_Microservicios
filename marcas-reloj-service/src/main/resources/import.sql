@@ -1,1 +1,1 @@
-INSERT INTO marcasreloj(id,fecha,hora,rut) VALUES (1, "2022/12/11", "07:00", "20537-8");
+INSERT INTO marcasreloj(id,fecha,hora,rut) VALUES (0, "2022-11-01", "07:00", "537-8");

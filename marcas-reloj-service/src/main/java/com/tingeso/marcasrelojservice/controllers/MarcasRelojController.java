@@ -64,7 +64,6 @@ public class MarcasRelojController {
         return ResponseEntity.ok(marca_salida);
     }
 
-
     @PostMapping
     public void guardarData(@RequestParam("file") MultipartFile file, RedirectAttributes ms) throws FileNotFoundException, ParseException{
         marcasRelojService.guardar(file);

@@ -18,3 +18,10 @@ spring:
     hibernate:
       dialect: MySQL8Dialect
       ddl-auto: create
+
+keycloak:
+  realm: tingeso-webapp
+  authServerUrl: http://host.docker.internal:8085/
+  resource: springboot-keycloak
+  publicClient: true
+  bearerOnly: true

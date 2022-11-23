@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface MarcasRelojRepository extends JpaRepository <MarcasRelojEntity, Integer>{
 
-
     @Query(value = "select * from marcasreloj as e where e.rut = :rut and e.fecha =:fecha limit 1",
             nativeQuery = true)
     MarcasRelojEntity buscarData(@Param("rut") String rut, @Param("fecha") String fecha);

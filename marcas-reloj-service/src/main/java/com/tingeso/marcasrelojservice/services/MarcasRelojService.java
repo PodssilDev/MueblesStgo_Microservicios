@@ -2,16 +2,12 @@ package com.tingeso.marcasrelojservice.services;
 
 
 import com.tingeso.marcasrelojservice.entities.MarcasRelojEntity;
-import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.tingeso.marcasrelojservice.repositories.MarcasRelojRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,14 +15,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 @Service
 public class MarcasRelojService {
@@ -66,7 +56,6 @@ public class MarcasRelojService {
     public MarcasRelojEntity obtenerEspecifico2(String rut, String fecha){
         return marcasRelojRepository.buscarData2(rut, fecha);
     }
-
 
     public void leerTxt(String direccion) {
         String texto = "";

@@ -36,7 +36,7 @@ export default function JustificativoComponent(props){
             buttons: ["Cancelar", "Enviar"],
             dangerMode: true
         }).then(respuesta=>{
-            if(respuesta){
+            if(respuesta && keycloak.authenticated){
                 swal("Justificativo enviado correctamente!", {icon: "success", timer: "3000"});
                 let justificativo = { fecha: input.fecha, rut: input.rut};
                 console.log(input.rut)
@@ -47,6 +47,9 @@ export default function JustificativoComponent(props){
                     }
                   );
                 }
+            else if(respuesta && !keycloak.authenticated){
+                swal("No autorizado. Debe iniciar sesión para enviar el justificativo", {icon: "error", timer: "3000"});
+            }
             else{
                 swal({text: "Justificativo no enviado.", icon: "error"});
             }
@@ -72,7 +75,7 @@ export default function JustificativoComponent(props){
 
                                         <Form.Group className="mb-3" controlId="fecha" value = {input.fecha} onChange={changeFechaHandler}>
                                             <Form.Label>Fecha del justificativo</Form.Label>
-                                            <Form.Control type="fecha" placeholder="Fecha en formato AAAA/MM/DD" />
+                                            <Form.Control type="fecha" placeholder="Fecha en formato AAAA-MM-DD" />
                                         </Form.Group>
                                     </Form>
                                 </div>

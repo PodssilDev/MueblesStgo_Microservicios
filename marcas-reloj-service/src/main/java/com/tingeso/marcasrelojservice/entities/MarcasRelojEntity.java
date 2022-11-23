@@ -20,5 +20,4 @@ public class MarcasRelojEntity{
     private String fecha;
     private String hora;
     private String rut;
-
 }

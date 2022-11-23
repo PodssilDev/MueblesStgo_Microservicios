@@ -1,1 +1,1 @@
-INSERT INTO justificativo(id, fecha, rut) VALUES (20, "12112022", "20934");
+INSERT INTO justificativo(id, fecha, rut) VALUES (0, "2022-01-01", "134-2");

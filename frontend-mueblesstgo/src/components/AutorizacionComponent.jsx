@@ -1,34 +1,33 @@
-import React, { Component } from "react";
+import React, { useState  } from "react";
 import NavbarComponent3 from "./NavbarComponent3";
 import styled from "styled-components";
 import AutorizacionService from "../services/AutorizacionService";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
-import { createGlobalStyle } from 'styled-components'
+import { useKeycloak } from '@react-keycloak/web'
 
-class AutorizacionComponent extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            rut: "",
-          fecha: ""
-        };
-        this.changeRutHandler = this.changeRutHandler.bind(this);
-        this.changeFechaHandler = this.changeFechaHandler.bind(this);
-    }
+export default function AutorizacionComponent(props){
+    const { keycloak } = useKeycloak()
 
-    changeFechaHandler = (event) => {
-        this.setState({ fecha: event.target.value });
-        console.log(this.state.fecha);
+    const initialState = {
+        rut: "",
+        fecha: ""
     };
 
-    changeRutHandler = (event) => {
-        this.setState({ rut: event.target.value });
-        console.log(this.state.rut);
-    };
+    const [input, setInput] = useState(initialState);
     
-    ingresarAutorizacion = (e) => {
+    const changeRutHandler = event => {
+        setInput({ ...input, rut: event.target.value });
+        console.log(input.rut);
+    };
+    const changeFechaHandler = event => {
+        setInput({ ...input, fecha: event.target.value });
+        console.log(input.fecha);
+    };
+
+    
+    const ingresarAutorizacion = e => {
         e.preventDefault();
         swal({
             title: "¿Está seguro de que desea enviar la autorización?",
@@ -37,24 +36,28 @@ class AutorizacionComponent extends Component{
             buttons: ["Cancelar", "Enviar"],
             dangerMode: true
         }).then(respuesta=>{
-            if(respuesta){
+            if(respuesta && keycloak.authenticated){
                 swal("Autorización enviada correctamente!", {icon: "success", timer: "3000"});
-                let autorizacion = { rut: this.state.rut, fecha: this.state.fecha};
-                console.log("justificativo => " + JSON.stringify(autorizacion));
-                AutorizacionService.IngresarAutorizacion(autorizacion).then(
+                let autorizacion = { fecha: input.fecha, rut: input.rut};
+                console.log(input.rut)
+                console.log(input.fecha)
+                console.log("autorizacion => " + JSON.stringify(autorizacion));
+                AutorizacionService.IngresarAutorizacion(autorizacion, keycloak.token).then(
                     (res) => {
                     }
                   );
                 }
+            else if(respuesta && !keycloak.authenticated){
+                swal("No autorizado. Debe iniciar sesión para enviar la autorización.", {icon: "error", timer: "3000"});
+            }
             else{
                 swal({text: "Autorización no enviada.", icon: "error"});
             }
         });
     };
 
-    
-    render(){
-        return(
+    return(
+            
             <Styles>
             <div className="home">
                 <NavbarComponent3 />
@@ -65,28 +68,26 @@ class AutorizacionComponent extends Component{
                                 <hr></hr>
                                 <div className="container">
                                     <Form>
-                                        <Form.Group className="mb-3" controlId="rut" onChange={this.changeRutHandler}>
+                                        <Form.Group className="mb-3" controlId="rut" value = {input.rut} onChange={changeRutHandler}>
                                             <Form.Label>Rut del empleado</Form.Label>
                                             <Form.Control type="rut" placeholder="Rut del empleado en formato xx.xxx.xxx-x" />
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="fecha" onChange={this.changeFechaHandler}>
-                                            <Form.Label>Fecha de la autorización</Form.Label>
-                                            <Form.Control type="fecha" placeholder="Fecha en formato AAAA/MM/DD" />
+                                        <Form.Group className="mb-3" controlId="fecha" value = {input.fecha} onChange={changeFechaHandler}>
+                                            <Form.Label>Fecha de la Autorización</Form.Label>
+                                            <Form.Control type="fecha" placeholder="Fecha en formato AAAA-MM-DD" />
                                         </Form.Group>
                                     </Form>
                                 </div>
-                                <Button className="boton" onClick={this.ingresarAutorizacion}>Registrar Autorización</Button>
+                                <Button className="boton" onClick={ingresarAutorizacion}>Registrar Autorización</Button>
                             </div>
                         </div>
                     </div>
+                
             </div>
             </Styles>
         )
     }
-}
-
-export default AutorizacionComponent;
 
 
 const Styles = styled.div`
