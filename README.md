@@ -1,12 +1,7 @@
-# Técnicas de Ingeniería de Software PEP 2 2022-2: Aplicación con Microservicios
-
-* Autor: John Serrano
-* Sección: 13319-0-A-1
-* Profesor: Alcides Quispe
-* Calificación luego de la evaluación: 7.0/7.0
+# MueblesStgo: Aplicación con Microservicios
 
 ## Descripción
-En este repositorio se encuentra el Backend y Frontend de la aplicación desarrollada para la PEP 2 de Técnicas de Ingeniería de Software en 2022. La aplicación esta desarrollada principalmente en Java, utilizando [SpringBoot](https://start.spring.io) y [React JS](https://reactjs.org).
+En este repositorio se encuentra el Backend y Frontend de la aplicación web de MueblesStgo desarrollada utilizando Microservicios. La aplicación esta desarrollada principalmente en Java, utilizando [SpringBoot](https://start.spring.io) y [React JS](https://reactjs.org).
 
 ## Herramientas utilizadas
 
